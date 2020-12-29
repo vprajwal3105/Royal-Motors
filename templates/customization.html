@@ -1,0 +1,429 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Car Model-Royal Motors</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Royal Motors - v2.1.0
+  * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-Royal Motors/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container">
+
+      <div class="logo float-left">
+        <h1 class="text-light"><a href="/"><span>Royal Motors</span></a></h1>
+       
+      </div>
+
+      <nav class="nav-menu float-right d-none d-lg-block">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/carmodel">Car Model</a></li>
+          <li><a href="/testdrive">Test Drive</a></li>
+          <li class="active"><a href="customization.html">Customisation</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/register">Registration</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+  <main id="main">
+<!-- ======= About us Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+  
+          <div class="d-flex justify-content-between align-items-center">
+            <h2>Customization</h2>
+            <ol>
+              <li><a href="/">Home</a></li>
+              <li>customization</li>
+            </ol>
+          </div>
+  
+        </div>
+      </section><!-- End About us Section -->
+<!-- 
+      <style>
+        .dropbtn {
+          background-color: #4CAF50;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
+        
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+        
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+        
+        .dropdown-content a:hover {background-color: #f1f1f1}
+        
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+        
+        .dropdown:hover .dropbtn {
+          background-color: #3e8e42;
+        }
+        </style>
+
+        <h2>Car Model</h2>
+<p>Please select a car model which you want configure</p>
+
+
+<div class="dropdown">
+  <button class="dropbtn">SELECT</button>
+  <div class="dropdown-content">
+  <a href="#">A CLASS</a>
+  <a href="#">C CLASS</a>
+  <a href="#">E CLASS</a>
+  <a href="#">S CLASS</a>
+  <a href="#">GLA</a>
+  <a href="#">GLC</a>
+  <a href="#">GLE</a>
+  <a href="#">GLS</a>
+  <a href="#">CLS</a>
+  <a href="#">V CLASS</a>
+  </div>
+  
+      <!-- ======= Services Section ======= -->
+      <section>
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+            <div class="icon-box icon-box-pink">
+              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <h3 class="title">Please select the car model which you wish to customize</h3>
+              <script>
+                function check(browser) {
+                  document.getElementById("answer").value=browser;
+                }
+                </script>
+              <form action="/testdrive/success/" method="POST">
+                {%csrf_token%}
+                <input type="radio" id="t1" name="browser" onclick="check(this.value)" value="A CLASS">A CLASS<br>
+                <input type="radio" id="t2" name="browser" onclick="check(this.value)" value="C CLASS">C CLASS<br>
+                <input type="radio" id="t3" name="browser" onclick="check(this.value)" value="E CLASS">E CLASS<br>
+                <input type="radio" id="t4" name="browser" onclick="check(this.value)" value="S CLASS">S CLASS<br>
+                <input type="radio" id="t5" name="browser" onclick="check(this.value)" value="MAYBACH S-CLASS">MAYBACH S-CLASS<br>
+                <input type="radio" id="t6" name="browser" onclick="check(this.value)" value="C-CLASS CABRIOLET">C-CLASS CABRIOLET<br>
+                <input type="radio" id="t7" name="browser" onclick="check(this.value)" value="GLA">GLA<br>
+                <input type="radio" id="t8" name="browser" onclick="check(this.value)" value="GLC">GLC<br>
+                <input type="radio" id="t9" name="browser" onclick="check(this.value)" value="GLE">GLE<br>
+                <input type="radio" id="t10" name="browser" onclick="check(this.value)" value="GLS">GLS<br>
+                <input type="radio" id="t11" name="browser" onclick="check(this.value)" value="G CLASS">G CLASS<br>
+                <input type="radio" id="t12" name="browser" onclick="check(this.value)" value="C CLASS COUPE">C CLASS COUPE<br>
+                <input type="radio" id="t13" name="browser" onclick="check(this.value)" value="GLS COUPE">GLS COUPE<br>
+                <input type="radio" id="t14" name="browser" onclick="check(this.value)" value="GLC COUPE">GLC COUPE<br>
+                <input type="radio" id="t15" name="browser" onclick="check(this.value)" value="GLE COUPE">GLE COUPE<br>
+                <input type="radio" id="t16" name="browser" onclick="check(this.value)" value="AMG GT 4 DOOR COUPE">AMG GT 4 DOOR COUPE<br>
+                <input type="radio" id="t17" name="browser" onclick="check(this.value)" value="V CLASS">V CLASS<br>
+                <input type="radio" id="t18" name="browser" onclick="check(this.value)" value="E CLASS ALL TERRAIN">E CLASS ALL TERRAIN<br>
+                <br>
+                Selected Car Model: <input type="text" id="answer" size="20"><br>
+
+                <section class="services">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                      <div class="icon-box icon-box-pink">
+                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                        <h4 class="title"><a href="">CAR COLOUR</a></h4>
+                        <input type="radio" id="MOUNTAIN GREY" name="CAR COLOUR" value="MOUNTAIN GREY">
+                        <label for="MOUNTAIN GREY">MOUNTAIN GREY</label><br>
+                        <input type="radio" id="DENIM BLUE" name="CAR COLOUR" value="DENIM BLUE">
+                        <label for="DENIM BLUE">DENIM BLUE</label><br>
+                        <input type="radio" id="EMERALD GREEN" name="CAR COLOUR" value="EMERALD GREEN">
+                        <label for="EMERALD GREEN">EMERALD GREEN</label><br>
+                      </div>
+                    </div>
+          
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                      <div class="icon-box icon-box-cyan">
+                        <div class="icon"><i class="bx bx-file"></i></div>
+                        <h4 class="title"><a href="">SEAT COLOUR</a></h4>
+                        <input type="radio" id="CARAMEL BROWN" name="SEAT COLOUR" value="CARAMEL BROWN">
+                        <label for="CARAMEL BROWN">CARAMEL BROWN</label><br>
+                        <input type="radio" id="EXPRESSO BROWN" name="SEAT_COLOUR" value="EXPRESSO BROWN">
+                        <label for="Denim Blue">Denim Blue</label><br>
+                        <input type="radio" id="RUBY RED" name="Car_color" value="RUBY RED">
+                        <label for="RUBY RED">RUBY RED</label><br>
+        
+                      </div>
+                    </div>
+          
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                      <div class="icon-box icon-box-green">
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">PACKAGE</a></h4>
+                        <input type="radio" id="DRIVING ASSISTANCE PACKAGE" name="PACKAGE" value="DRIVING ASSITANCE PACKAGE">
+                        <label for="DRIVING ASSITANCE PACKAGE">DRIVING ASSITANCE PACKAGE</label><br>
+                        <input type="radio" id="SMARTPHONE INTEGRATION PACKAGE" name="PACKAGE" value="SMARTPHONE INTEGRATION PACKAGE">
+                        <label for="SMARTPHONE INTEGRATION PACKAGE">SMARTPHONE INTEGRATION PACKAGE</label><br>
+                      </div>
+                    </div>
+                <input type="submit" name="sub" value="SUBMIT">
+                </form>
+                </div>
+                </div>
+                </div>
+      </section>
+    </section>
+  
+    <!-- <section class="services">
+        <div class="container">
+  
+          <div class="row">
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+              <div class="icon-box icon-box-pink">
+                <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                <h4 class="title"><a href="">Engine capacity</a></h4>
+                <input type="radio" id="5000rpm" name="engine_capacity" value="5000rpm">
+                <label for="5000rpm">5000rpm</label><br>
+                <input type="radio" id="6000rpm" name="engine_capacity" value="6000rpm">
+                <label for="6000rpm">6000rpm</label><br>
+              </div>
+            </div>
+  
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon-box icon-box-cyan">
+                <div class="icon"><i class="bx bx-file"></i></div>
+                <h4 class="title"><a href="">Car Color</a></h4>
+                <input type="radio" id="Mountain Grey" name="Car_color" value="Mountain Grey">
+                <label for="Mountain Grey">Mountain Grey</label><br>
+                <input type="radio" id="Denim Blue" name="Car_color" value="Denim Blue">
+                <label for="Denim Blue">Denim Blue</label><br>
+                <input type="radio" id="Ruby Black" name="Car_color" value="Ruby Black">
+                <label for="Ruby Black">Ruby Black</label><br>
+
+              </div>
+            </div>
+  
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon-box icon-box-green">
+                <div class="icon"><i class="bx bx-tachometer"></i></div>
+                <h4 class="title"><a href="">Wheel</a></h4>
+                <input type="radio" id="5-twin-spoke light-alloy wheels" name="car_wheel" value="5-twin-spoke light-alloy wheels">
+                <label for="5-twin-spoke light-alloy wheels">5-twin-spoke light-alloy wheels</label><br>
+                <input type="radio" id="AMG 5-spoke light-alloy wheels" name="car_wheel" value="AMG 5-spoke light-alloy wheels">
+                <label for="AMG 5-spoke light-alloy wheels">AMG 5-spoke light-alloy wheels</label><br>
+              </div>
+            </div>
+  
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon-box icon-box-blue">
+                <div class="icon"><i class="bx bx-world"></i></div>
+                <h4 class="title"><a href="">Seat Color</a></h4>
+                <input type="radio" id="saddle brown" name="Seat_color" value="saddle brown">
+                <label for="saddle brown">saddle brown</label><br>
+                <input type="radio" id=" silk beige " name="Seat_color" value=" silk beige ">
+                <label for=" silk beige "> silk beige </label><br>
+                <input type="radio" id="macchiato beige" name="Seat_color" value="macchiato beige">
+                <label for="macchiato beige">macchiato beige</label><br>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box icon-box-blue">
+                  <div class="icon"><i class="bx bx-world"></i></div>
+                  <h4 class="title"><a href="">Entertainment</a></h4>
+                  <input type="radio" id="2 Wireless Head Sets " name="entertainment" value="2 Wireless Head Sets ">
+                  <label for="2 Wireless Head Sets ">2 Wireless Head Sets </label><br>
+                  <input type="radio" id="Rear seat entertainment" name="entertainment" value="Rear seat entertainment">
+                  <label for="Rear seat entertainment">Rear seat entertainment</label><br>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box icon-box-blue">
+                  <div class="icon"><i class="bx bx-world"></i></div>
+                  <h4 class="title"><a href="">Sun Roof</a></h4>
+                  <input type="radio" id="Yes" name="sun roof" value="Yes">
+                  <label for="Yes">Yes</label><br>
+                  <input type="radio" id="No" name="sun roof" value="No">
+                  <label for="No">No</label><br>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box icon-box-blue">
+                  <div class="icon"><i class="bx bx-world"></i></div>
+                  <h4 class="title"><a href="">Driving Assistance</a></h4>
+                  <input type="radio" id="Yes" name="driving assitance" value="Yes">
+                  <label for="Yes">Yes</label><br>
+                  <input type="radio" id="No" name="driving assitance" value="No">
+                  <label for="No">No</label><br>
+                </div>
+              </div>
+            </div>
+        </div>
+        </section>
+      </div>End Services Section
+
+
+      <style> 
+        input[type=button]{
+          background-color: #0c0c0c;
+          border: none;
+          color: rgb(207, 26, 26);
+          padding: 16px 32px;
+          text-decoration: none;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+        </style>
+        <p>Confirm your Customization</p>
+        <input type="submit" value="Submit">
+ -->
+        <!-- ======= About Section ======= -->
+    <section class="about" data-aos="fade-up">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <img  src="{% static 'assets/img/custom/rubyblack.jpg' %}" class="img-fluid" alt="">
+          </div>
+  
+        </div>
+      </section><!-- End About Section -->
+    </main> -->
+
+
+<!-- ======= Footer ======= -->
+  <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Customisation</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Test Drive</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              1108 MG Road <br>
+              Bengaluru, Karnataka 560102<br>
+              India <br><br>
+              <strong>Phone:</strong> 080 22581850<br>
+              <strong>Email:</strong> royalmotors@gmail.com<br>
+            </p>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3>About Royal Motors</h3>
+            <p>We are Bengaluru based car dealer of Mercedes Benz, we have 3 branches across the city. We have 18 car models and offer best service by providing free home test drive service.
+              Customers can also configure their dream car and can purchase their car digitally right from their home by having almost showroom service. </p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Royal Motors</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-template-corporate-Royal Motors/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>
