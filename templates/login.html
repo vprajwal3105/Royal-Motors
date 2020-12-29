@@ -89,15 +89,16 @@
     <!-- ======= Login Section ======= -->
     <section class="about" data-aos="fade-up">
       <div class="container">
-        <form method='POST'>  
+        <form action="/login/" method = "POST"> 
+          {% csrf_token %} 
             <div class="container">
                 
-                {% csrf_token %}
+                
                 <label> Username </label>         
                 <input type="text" name="username" size="15" required/> <br> <br> 
                 <label> Password </label> 
                 <input type="Password" id="password" name="password" required> <br><br> 
-                <button type="submit">Login</button>
+                <button type="submit" name = "submit">Login</button>
                 
                 Don't have an account? <a href="/register" target="blank"><strong>register here</strong></a>!
             </div>   

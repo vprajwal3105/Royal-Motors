@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.db import connection
 from os import path
@@ -7,6 +6,8 @@ from json import dumps
 import datetime
 from urllib.parse import urlparse, parse_qs
 import requests
+from django.http import HttpResponse,HttpResponseRedirect  
+
 
 
 def index(request):
@@ -16,6 +17,7 @@ def about(request):
     return render(request,'about.html')
 
 def carmodel(request):
+    print("user is "+ request.COOKIES.get('royalusername'))
     return render(request,'carmodel.html')
 
 """ def carmodel_details(request):
@@ -105,19 +107,26 @@ def testdrivesuccess(request):
     return render(request, 'testdrivesuccess.html')
 
 
-def login(request):
+def loginFlow(request):
+     print("this is for login")
      if request.method == 'POST':
          username = request.POST['username']
          password = request.POST['password']
          cursor = connection.cursor()
          cursor.execute('''select USERNAME from customer where USERNAME = %s''',[username])
+         userNameRow = cursor.fetchone()
          cursor.execute('''select PASSWORD from customer where PASSWORD = %s''',[password])
-         row = cursor.fetchall()
-         if (len(row) > 0 and row[0] == username ):
-             if (len(row) > 0 and row[1] == password):
+         passwordRow = cursor.fetchone()
+         #print("username is "+ userNameRow[0])
+         #print("password is " + passwordRow[0])
+         if (userNameRow[0] == username ):
+             if (passwordRow[0] == password):
                  print('Logged in successfully')
                  messages.info(request,'Logged in successfully')
-                 return redirect("/")
+                 response = HttpResponseRedirect("/")
+                 response.set_cookie("royalusername",username)
+                 return response
+         print("redirecting to home")        
          return redirect("/")
          print(row)
      else:
