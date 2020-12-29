@@ -127,7 +127,30 @@ INSERT INTO PURCHASE VALUES(5,18,5,2000000.00,'03-12-20','CASH');
 
 
 
-
+def loginFlow(request):
+     print("this is for login")
+     if request.method == 'POST':
+         username = request.POST['username']
+         password = request.POST['password']
+         cursor = connection.cursor()
+         cursor.execute('''select USERNAME from customer where USERNAME = %s''',[username])
+         userNameRow = cursor.fetchone()
+         cursor.execute('''select PASSWORD from customer where PASSWORD = %s''',[password])
+         passwordRow = cursor.fetchone()
+         #print("username is "+ userNameRow[0])
+         #print("password is " + passwordRow[0])
+         if (userNameRow[0] == username ):
+             if (passwordRow[0] == password):
+                 print('Logged in successfully')
+                 messages.info(request,'Logged in successfully')
+                 response = HttpResponseRedirect("/")
+                 response.set_cookie("royalusername",username)
+                 return response
+         print("redirecting to home")        
+         return redirect("/")
+         print(row)
+     else:
+         return render(request,'login.html')
 
 
 

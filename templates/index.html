@@ -37,7 +37,7 @@
   ======================================================== -->
 </head>
 
-<body>
+<body onload="LoginOnLoad()">
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top header-transparent">
@@ -55,9 +55,60 @@
           </li>
           <li><a href="/testdrive">Test Drive</a></li>
           <li><a href="/customization">Customisation</a></li>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Registration</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li id = "loginhref"><a  href="/login">Login</a></li>
+          <li id = "registrationhref"><a href="/register">Registration</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+          <li><a href="">Log Out</a></li>
+          <li><input type="button" id= "logoutbutton" value="Logout" onclick= ' document.cookie = "royalusername=; expires=Fri, 20 Jun 2018 00:00:00 GMT";'/></li>
+          <script type="text/javascript">
+            document.getElementById("logoutbutton").onclick = function () {
+              document.cookie = "royalusername=; expires=Fri, 20 Jun 2018 00:00:00 GMT";
+              location.href = "/"
+            };
+            function LoginOnLoad() {
+              console.log("i am in login on load")
+              present = getCookie("royalusername")
+              console.log(present);
+              var ele = document.getElementById("loginhref");
+              if(present != "") {
+                ele.style.display = "none";
+                
+              }else {
+                ele.style.display = "block";
+              }
+              var ele = document.getElementById("registrationhref");
+              if(present != "") {
+                ele.style.display = "none";
+                
+              }else {
+                ele.style.display = "block";
+              }
+              var ele = document.getElementById("logoutbutton");
+              if(present != "") {
+                ele.style.display = "block";
+                
+              }else {
+                ele.style.display = "none";
+              }
+            };
+            
+            function getCookie(cname) {
+              var name = cname + "=";
+              var decodedCookie = decodeURIComponent(document.cookie);
+              var ca = decodedCookie.split(';');
+              for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+                }
+              }
+              return "";
+            }
+            
+          </script>
         </ul>
       </nav><!-- .nav-menu -->
 
