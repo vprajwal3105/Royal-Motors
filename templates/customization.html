@@ -50,7 +50,7 @@
           <li id = "customizationhref" class="active"><a href="/customization">Customisation</a></li>
           <li id = "loginhref"><a  href="/login">Login</a></li>
           <li id = "registrationhref"><a href="/register">Registration</a></li>
-          <li><a href="contact.html">Contact us</a></li>
+          <li><a href="/contact">Contact us</a></li>
           <li><input type="button" id= "logoutbutton" value="Logout" onclick= ' document.cookie = "royalusername=; expires=Fri, 20 Jun 2018 00:00:00 GMT";'/></li>
           <script type="text/javascript">
             document.getElementById("logoutbutton").onclick = function () {
@@ -128,7 +128,7 @@
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
             <div class="icon-box icon-box-pink">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h3 class="title">Please select the car model which you wish to customize</h3>
+              <h3 class="title">Please select the car model which you wish to Purchase</h3>
               <script>
                 function check(browser) {
                   document.getElementById("answer").value=browser;
@@ -140,7 +140,7 @@
                 <input type="radio" id="p2" name="browser" onclick="check(this.value)" value="C CLASS">C CLASS<br>
                 <input type="radio" id="p3" name="browser" onclick="check(this.value)" value="E CLASS">E CLASS<br>
                 <input type="radio" id="p4" name="browser" onclick="check(this.value)" value="S CLASS">S CLASS<br>
-                <input type="radio" id="p5" name="browser" onclick="check(this.value)" value="MAYBACH S-CLASS">MAYBACH S-CLASS<br>
+                <input type="radio" id="p5" name="browser" onclick="check(this.value)" value="MAYBACH S CLASS">MAYBACH S CLASS<br>
                 <input type="radio" id="p6" name="browser" onclick="check(this.value)" value="C-CLASS CABRIOLET">C-CLASS CABRIOLET<br>
                 <input type="radio" id="p7" name="browser" onclick="check(this.value)" value="GLA">GLA<br>
                 <input type="radio" id="p8" name="browser" onclick="check(this.value)" value="GLC">GLC<br>
@@ -155,7 +155,8 @@
                 <input type="radio" id="p17" name="browser" onclick="check(this.value)" value="V CLASS">V CLASS<br>
                 <input type="radio" id="p18" name="browser" onclick="check(this.value)" value="E CLASS ALL TERRAIN">E CLASS ALL TERRAIN<br>
                 <br>
-                Selected Car Model: <input type="text" id="answer" size="150"><br>
+                Selected Car Model: <input type="text" id="answer" size="150"><br><br><br>
+                <h3>If you wish you can customize your car</h3>
 
                 <section class="services">
                   <div class="container">
@@ -179,8 +180,8 @@
                           <h4 class="title"><a href="">SEAT COLOUR</a></h4>
                           <input type="radio" id="CARAMEL BROWN" name="SEAT COLOUR" value="CARAMEL BROWN">
                           <label for="CARAMEL BROWN">CARAMEL BROWN</label><br>
-                          <input type="radio" id="DENIM BLUE" name="SEAT_COLOUR" value="DENIM BLUE">
-                          <label for="DENIM BLUE">DENIM BLUE</label><br>
+                          <input type="radio" id="EXPRESSO BROWN" name="SEAT_COLOUR" value="EXPRESSO BROWN">
+                          <label for="EXPRESSO BROWN">EXPRESSO BROWN</label><br>
                           <input type="radio" id="RUBY RED" name="SEAT_COLOUR" value="RUBY RED">
                           <label for="RUBY RED">RUBY RED</label><br>
           
@@ -203,6 +204,8 @@
                       </div> 
                 </form>
                 </div>
+                Payment Mode:  <input type="text" id="payment_mode" name="payment_mode"><br>
+                Purchase Date : <input type="date" id="purchase_date" name="purchase_date"><br>
                 <input type="submit" name="sub" value="SUBMIT AND PURCHASE CAR">
                 </div>
                 </div>
