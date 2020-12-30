@@ -11,4 +11,5 @@ urlpatterns=[
     path ("customization/", views.customization, name="Customization"),
     path ("testdrive/", views.testdrive, name="testdrive"),
     path("testdrive/success/", views.testdrivesuccess, name="testdrivesuccess"),
+    path("customization/purchase/",views.purchase, name="purchase"),
 ]

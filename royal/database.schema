@@ -22,17 +22,10 @@ MODEL_ID INT(5) REFERENCES CAR(MODEL_ID),
 TESTDRIVE_DATE DATE,CUSTOMER_ADDRESS TEXT,
 PRIMARY KEY(MODEL_ID));
 
-CREATE TABLE CUSTOMIZATION(
-CONFIG_ID INT(5) AUTO_INCREMENT,
-MODEL_ID INT(5) REFERENCES CAR(MODEL_ID),
-CAR_COLOUR TEXT,SEAT_COLOUR TEXT, 
-PACKAGE TEXT,ADDITIONAL_COST INT(10),
-PRIMARY KEY(CONFIG_ID));
-
 CREATE TABLE PURCHASE(
-CUSTOMER_ID INT(5) REFERENCES CUSTOMER(CUSTOMER_ID),
-MODEL_ID INT(5) REFERENCES CAR(MODEL_ID),
-CONFIG_ID INT(5) REFERENCES CUSTOMIZATION(CONFIG_ID),
+PURCHASE_ID INT(5) AUTO_INCREMENT,
+USERNAME TEXT REFERENCES CUSTOMER(USERNAME),
+MODEL_NAME TEXT REFERENCES CAR(MODEL_NAME),
 FINAL_PRICE FLOAT(10,2),PAYMENT_MODE TEXT, PURCHASE_DATE DATE,
 PRIMARY KEY(PURCHASE_ID));
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -99,58 +92,20 @@ INSERT INTO CAR_DETAIL VALUES(17,'1500CC','BLACK NAPPA LEATHER','43.2-CM (17-INC
 
 INSERT INTO CAR_DETAIL VALUES(18,'1000CC','NUT BROWN','48.3 CM (19-INCH) 10-SPOKE LIGHT-ALLOYS WHEELS PAINTED IN TREMOLITE GREY','YES','NO',5,16,'WIRELESS CHARGING REAR');
 
-
-INSERT INTO TESTDRIVE VALUES(1,3,'15-11-20','HSR LAYOUT');
-INSERT INTO TESTDRIVE VALUES(2,7,'05-05-20','BTM LAYOUT');
-INSERT INTO TESTDRIVE VALUES(3,12,'23-09-20','HEBBAL');
-INSERT INTO TESTDRIVE VALUES(4,15,'11-12-20','JAYANAGAR');
-INSERT INTO TESTDRIVE VALUES(5,18,'02-08-20','JP NAGAR');
-
-
-INSERT INTO CUSTOMIZATION VALUES();
-INSERT INTO CUSTOMIZATION VALUES();
-INSERT INTO CUSTOMIZATION VALUES();
-INSERT INTO CUSTOMIZATION VALUES();
-INSERT INTO CUSTOMIZATION VALUES();
+INSERT INTO TESTDRIVE VALUES(3,'05-11-20','#847,10TH CROSS,25TH A MAIN,SECTOR 1,HSR LAYOUT');
+INSERT INTO TESTDRIVE VALUES(7,'15-01-20','#753,18TH MAIN ROAD,2ND STAGE,BTM LAYOUT');
+INSERT INTO TESTDRIVE VALUES(12,'23-11-20','#1189,27TH MAIN ROAD,OUTER RING ROAD,HEBBAL');
+INSERT INTO TESTDRIVE VALUES(15,'11-12-20','#972,14TH CROSS ROAD,3RD BLOCK,JAYANAGAR');
+INSERT INTO TESTDRIVE VALUES(18,'20-12-20','#267,16TH MAIN ROAD,2ND CROSS,7TH STAGE,JP NAGAR');
 
 
-INSERT INTO PURCHASE VALUES(1,3,1,1400000.00,'30-11-20','LOAN');
-INSERT INTO PURCHASE VALUES(2,7,2,1500000.00,'28-09-20','CASH');
-INSERT INTO PURCHASE VALUES(3,12,3,2000000.00,'23-07-20','CREDIT CARD');
-INSERT INTO PURCHASE VALUES(4,15,4,1600000.00,'12-10-20','LOAN');
-INSERT INTO PURCHASE VALUES(5,18,5,2000000.00,'03-12-20','CASH');
+INSERT INTO PURCHASE VALUES();
+INSERT INTO PURCHASE VALUES();
+INSERT INTO PURCHASE VALUES();
+INSERT INTO PURCHASE VALUES();
+INSERT INTO PURCHASE VALUES();
 
 
-
-
-
-
-
-
-def loginFlow(request):
-     print("this is for login")
-     if request.method == 'POST':
-         username = request.POST['username']
-         password = request.POST['password']
-         cursor = connection.cursor()
-         cursor.execute('''select USERNAME from customer where USERNAME = %s''',[username])
-         userNameRow = cursor.fetchone()
-         cursor.execute('''select PASSWORD from customer where PASSWORD = %s''',[password])
-         passwordRow = cursor.fetchone()
-         #print("username is "+ userNameRow[0])
-         #print("password is " + passwordRow[0])
-         if (userNameRow[0] == username ):
-             if (passwordRow[0] == password):
-                 print('Logged in successfully')
-                 messages.info(request,'Logged in successfully')
-                 response = HttpResponseRedirect("/")
-                 response.set_cookie("royalusername",username)
-                 return response
-         print("redirecting to home")        
-         return redirect("/")
-         print(row)
-     else:
-         return render(request,'login.html')
 
 
 

@@ -1,4 +1,207 @@
-<html>
-    <head>Test drive successful</head>
-    <body>Congrats. Your test drive has been booked successfully</body>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Car Model-Royal Motors</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body onload="LoginOnLoad()">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container">
+
+      <div class="logo float-left">
+        <h1 class="text-light"><a href="/"><span>Royal Motors</span></a></h1>
+      </div>
+
+      <nav class="nav-menu float-right d-none d-lg-block">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li id= "carmodelhref" class="active"><a href="/carmodel">Car Model</a>
+          </li>
+          <li id = "testdrivehref"><a href="/testdrive">Test Drive</a></li>
+          <li id = "customizationhref"><a href="/customization">Customisation</a></li>
+          <li id = "loginhref"><a  href="/login">Login</a></li>
+          <li id = "registrationhref"><a href="/register">Registration</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+          <li><input type="button" id= "logoutbutton" value="Logout" onclick= ' document.cookie = "royalusername=; expires=Fri, 20 Jun 2018 00:00:00 GMT";'/></li>
+          <script type="text/javascript">
+            document.getElementById("logoutbutton").onclick = function () {
+              document.cookie = "royalusername=; expires=Fri, 20 Jun 2018 00:00:00 GMT";
+              location.href = "/"
+            };
+            function LoginOnLoad() {
+              console.log("i am in login on load")
+              present = getCookie("royalusername")
+              console.log(present);
+              var ele = document.getElementById("loginhref");
+              if(present != "") {
+                ele.style.display = "none";
+                
+              }else {
+                ele.style.display = "block";
+              }
+              var ele = document.getElementById("registrationhref");
+              if(present != "") {
+                ele.style.display = "none";
+                
+              }else {
+                ele.style.display = "block";
+              }
+              var ele = document.getElementById("logoutbutton");
+              if(present != "") {
+                ele.style.display = "block";
+                
+              }else {
+                ele.style.display = "none";
+              }
+              
+              
+            };
+            
+            function getCookie(cname) {
+              var name = cname + "=";
+              var decodedCookie = decodeURIComponent(document.cookie);
+              var ca = decodedCookie.split(';');
+              for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+                }
+              }
+              return "";
+            }
+            
+          </script>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+  <main>
+      
+      <!-- =======  ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2>Test Drive</h2>
+            <ol>
+              <li><a href="/">Home</a></li>
+              <li>Test Drive</li>
+            </ol>
+          </div>
+        </div>
+      </section><!--  -->
+<section>
+    <h1>Congratulations your Test Drive has been booked successfully!!</h1>
+</section>
+</main>
+
+<!-- ======= Footer ======= -->
+<footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/carmodel">Car Models</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/testdrive">Test Drive</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              No 1108, Mahatma Gandhi Road, Shivajinagar, <br>
+              Bengaluru, Karnataka 560001<br>
+              India <br><br>
+              <strong>Phone:</strong>+91 9964432873<br>
+              <strong>Email:</strong>royalmotors@gmail.com<br>
+            </p>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3>About Royal Motors</h3>
+            <p>We are Bengaluru based car dealer of Mercedes Benz,Our main branch is located at MG ROAD. We have 18 car models and offer best service by providing free home test drive service.
+              Customers can also configure their dream car and can purchase their car digitally right from their home by having almost showroom service. </p>
+            <div class="social-links mt-3">
+              <a href="https://www.instagram.com/royal_motors_bengaluru/" class="instagram"><i class="bx bxl-instagram"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Royal Motors</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
 </html>

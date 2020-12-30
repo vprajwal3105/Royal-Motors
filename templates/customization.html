@@ -28,35 +28,79 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Royal Motors - v2.1.0
-  * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-Royal Motors/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
-<body>
+<body onload="LoginOnLoad()">
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
+  <header id="header" class="fixed-top">
     <div class="container">
 
       <div class="logo float-left">
         <h1 class="text-light"><a href="/"><span>Royal Motors</span></a></h1>
-       
       </div>
 
       <nav class="nav-menu float-right d-none d-lg-block">
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/about">About Us</a></li>
-          <li><a href="/carmodel">Car Model</a></li>
-          <li><a href="/testdrive">Test Drive</a></li>
-          <li class="active"><a href="customization.html">Customisation</a></li>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Registration</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li id= "carmodelhref"><a href="/carmodel">Car Model</a>
+          </li>
+          <li id = "testdrivehref"><a href="/testdrive">Test Drive</a></li>
+          <li id = "customizationhref" class="active"><a href="/customization">Customisation</a></li>
+          <li id = "loginhref"><a  href="/login">Login</a></li>
+          <li id = "registrationhref"><a href="/register">Registration</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+          <li><input type="button" id= "logoutbutton" value="Logout" onclick= ' document.cookie = "royalusername=; expires=Fri, 20 Jun 2018 00:00:00 GMT";'/></li>
+          <script type="text/javascript">
+            document.getElementById("logoutbutton").onclick = function () {
+              document.cookie = "royalusername=; expires=Fri, 20 Jun 2018 00:00:00 GMT";
+              location.href = "/"
+            };
+            function LoginOnLoad() {
+              console.log("i am in login on load")
+              present = getCookie("royalusername")
+              console.log(present);
+              var ele = document.getElementById("loginhref");
+              if(present != "") {
+                ele.style.display = "none";
+                
+              }else {
+                ele.style.display = "block";
+              }
+              var ele = document.getElementById("registrationhref");
+              if(present != "") {
+                ele.style.display = "none";
+                
+              }else {
+                ele.style.display = "block";
+              }
+              var ele = document.getElementById("logoutbutton");
+              if(present != "") {
+                ele.style.display = "block";
+                
+              }else {
+                ele.style.display = "none";
+              }
+            };
+            
+            function getCookie(cname) {
+              var name = cname + "=";
+              var decodedCookie = decodeURIComponent(document.cookie);
+              var ca = decodedCookie.split(';');
+              for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+                }
+              }
+              return "";
+            }
+            
+          </script>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -77,67 +121,6 @@
   
         </div>
       </section><!-- End About us Section -->
-<!-- 
-      <style>
-        .dropbtn {
-          background-color: #4CAF50;
-          color: white;
-          padding: 16px;
-          font-size: 16px;
-          border: none;
-          cursor: pointer;
-        }
-        
-        .dropdown {
-          position: relative;
-          display: inline-block;
-        }
-        
-        .dropdown-content {
-          display: none;
-          position: absolute;
-          background-color: #f9f9f9;
-          min-width: 160px;
-          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-          z-index: 1;
-        }
-        
-        .dropdown-content a {
-          color: black;
-          padding: 12px 16px;
-          text-decoration: none;
-          display: block;
-        }
-        
-        .dropdown-content a:hover {background-color: #f1f1f1}
-        
-        .dropdown:hover .dropdown-content {
-          display: block;
-        }
-        
-        .dropdown:hover .dropbtn {
-          background-color: #3e8e42;
-        }
-        </style>
-
-        <h2>Car Model</h2>
-<p>Please select a car model which you want configure</p>
-
-
-<div class="dropdown">
-  <button class="dropbtn">SELECT</button>
-  <div class="dropdown-content">
-  <a href="#">A CLASS</a>
-  <a href="#">C CLASS</a>
-  <a href="#">E CLASS</a>
-  <a href="#">S CLASS</a>
-  <a href="#">GLA</a>
-  <a href="#">GLC</a>
-  <a href="#">GLE</a>
-  <a href="#">GLS</a>
-  <a href="#">CLS</a>
-  <a href="#">V CLASS</a>
-  </div>
   
       <!-- ======= Services Section ======= -->
       <section>
@@ -151,194 +134,81 @@
                   document.getElementById("answer").value=browser;
                 }
                 </script>
-              <form action="/testdrive/success/" method="POST">
+              <form action="purchase/" method="POST">
                 {%csrf_token%}
-                <input type="radio" id="t1" name="browser" onclick="check(this.value)" value="A CLASS">A CLASS<br>
-                <input type="radio" id="t2" name="browser" onclick="check(this.value)" value="C CLASS">C CLASS<br>
-                <input type="radio" id="t3" name="browser" onclick="check(this.value)" value="E CLASS">E CLASS<br>
-                <input type="radio" id="t4" name="browser" onclick="check(this.value)" value="S CLASS">S CLASS<br>
-                <input type="radio" id="t5" name="browser" onclick="check(this.value)" value="MAYBACH S-CLASS">MAYBACH S-CLASS<br>
-                <input type="radio" id="t6" name="browser" onclick="check(this.value)" value="C-CLASS CABRIOLET">C-CLASS CABRIOLET<br>
-                <input type="radio" id="t7" name="browser" onclick="check(this.value)" value="GLA">GLA<br>
-                <input type="radio" id="t8" name="browser" onclick="check(this.value)" value="GLC">GLC<br>
-                <input type="radio" id="t9" name="browser" onclick="check(this.value)" value="GLE">GLE<br>
-                <input type="radio" id="t10" name="browser" onclick="check(this.value)" value="GLS">GLS<br>
-                <input type="radio" id="t11" name="browser" onclick="check(this.value)" value="G CLASS">G CLASS<br>
-                <input type="radio" id="t12" name="browser" onclick="check(this.value)" value="C CLASS COUPE">C CLASS COUPE<br>
-                <input type="radio" id="t13" name="browser" onclick="check(this.value)" value="GLS COUPE">GLS COUPE<br>
-                <input type="radio" id="t14" name="browser" onclick="check(this.value)" value="GLC COUPE">GLC COUPE<br>
-                <input type="radio" id="t15" name="browser" onclick="check(this.value)" value="GLE COUPE">GLE COUPE<br>
-                <input type="radio" id="t16" name="browser" onclick="check(this.value)" value="AMG GT 4 DOOR COUPE">AMG GT 4 DOOR COUPE<br>
-                <input type="radio" id="t17" name="browser" onclick="check(this.value)" value="V CLASS">V CLASS<br>
-                <input type="radio" id="t18" name="browser" onclick="check(this.value)" value="E CLASS ALL TERRAIN">E CLASS ALL TERRAIN<br>
+                <input type="radio" id="p1" name="browser" onclick="check(this.value)" value="A CLASS">A CLASS<br>
+                <input type="radio" id="p2" name="browser" onclick="check(this.value)" value="C CLASS">C CLASS<br>
+                <input type="radio" id="p3" name="browser" onclick="check(this.value)" value="E CLASS">E CLASS<br>
+                <input type="radio" id="p4" name="browser" onclick="check(this.value)" value="S CLASS">S CLASS<br>
+                <input type="radio" id="p5" name="browser" onclick="check(this.value)" value="MAYBACH S-CLASS">MAYBACH S-CLASS<br>
+                <input type="radio" id="p6" name="browser" onclick="check(this.value)" value="C-CLASS CABRIOLET">C-CLASS CABRIOLET<br>
+                <input type="radio" id="p7" name="browser" onclick="check(this.value)" value="GLA">GLA<br>
+                <input type="radio" id="p8" name="browser" onclick="check(this.value)" value="GLC">GLC<br>
+                <input type="radio" id="p9" name="browser" onclick="check(this.value)" value="GLE">GLE<br>
+                <input type="radio" id="p10" name="browser" onclick="check(this.value)" value="GLS">GLS<br>
+                <input type="radio" id="p11" name="browser" onclick="check(this.value)" value="G CLASS">G CLASS<br>
+                <input type="radio" id="p12" name="browser" onclick="check(this.value)" value="C CLASS COUPE">C CLASS COUPE<br>
+                <input type="radio" id="p13" name="browser" onclick="check(this.value)" value="GLS COUPE">GLS COUPE<br>
+                <input type="radio" id="p14" name="browser" onclick="check(this.value)" value="GLC COUPE">GLC COUPE<br>
+                <input type="radio" id="p15" name="browser" onclick="check(this.value)" value="GLE COUPE">GLE COUPE<br>
+                <input type="radio" id="p16" name="browser" onclick="check(this.value)" value="AMG GT 4 DOOR COUPE">AMG GT 4 DOOR COUPE<br>
+                <input type="radio" id="p17" name="browser" onclick="check(this.value)" value="V CLASS">V CLASS<br>
+                <input type="radio" id="p18" name="browser" onclick="check(this.value)" value="E CLASS ALL TERRAIN">E CLASS ALL TERRAIN<br>
                 <br>
-                Selected Car Model: <input type="text" id="answer" size="20"><br>
+                Selected Car Model: <input type="text" id="answer" size="150"><br>
 
                 <section class="services">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
-                      <div class="icon-box icon-box-pink">
-                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                        <h4 class="title"><a href="">CAR COLOUR</a></h4>
-                        <input type="radio" id="MOUNTAIN GREY" name="CAR COLOUR" value="MOUNTAIN GREY">
-                        <label for="MOUNTAIN GREY">MOUNTAIN GREY</label><br>
-                        <input type="radio" id="DENIM BLUE" name="CAR COLOUR" value="DENIM BLUE">
-                        <label for="DENIM BLUE">DENIM BLUE</label><br>
-                        <input type="radio" id="EMERALD GREEN" name="CAR COLOUR" value="EMERALD GREEN">
-                        <label for="EMERALD GREEN">EMERALD GREEN</label><br>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                        <div class="icon-box icon-box-pink">
+                          <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                          <h4 class="title"><a href="">CAR COLOUR</a></h4>
+                          <input type="radio" id="MOUNTAIN GREY" name="CAR COLOUR" value="MOUNTAIN GREY">
+                          <label for="MOUNTAIN GREY">MOUNTAIN GREY</label><br>
+                          <input type="radio" id="DENIM BLUE" name="CAR COLOUR" value="DENIM BLUE">
+                          <label for="DENIM BLUE">DENIM BLUE</label><br>
+                          <input type="radio" id="EMERALD GREEN" name="CAR COLOUR" value="EMERALD GREEN">
+                          <label for="EMERALD GREEN">EMERALD GREEN</label><br>
+                        </div>
                       </div>
-                    </div>
+            
+                      <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-box icon-box-cyan">
+                          <div class="icon"><i class="bx bx-file"></i></div>
+                          <h4 class="title"><a href="">SEAT COLOUR</a></h4>
+                          <input type="radio" id="CARAMEL BROWN" name="SEAT COLOUR" value="CARAMEL BROWN">
+                          <label for="CARAMEL BROWN">CARAMEL BROWN</label><br>
+                          <input type="radio" id="DENIM BLUE" name="SEAT_COLOUR" value="DENIM BLUE">
+                          <label for="DENIM BLUE">DENIM BLUE</label><br>
+                          <input type="radio" id="RUBY RED" name="SEAT_COLOUR" value="RUBY RED">
+                          <label for="RUBY RED">RUBY RED</label><br>
           
-                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                      <div class="icon-box icon-box-cyan">
-                        <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4 class="title"><a href="">SEAT COLOUR</a></h4>
-                        <input type="radio" id="CARAMEL BROWN" name="SEAT COLOUR" value="CARAMEL BROWN">
-                        <label for="CARAMEL BROWN">CARAMEL BROWN</label><br>
-                        <input type="radio" id="EXPRESSO BROWN" name="SEAT_COLOUR" value="EXPRESSO BROWN">
-                        <label for="Denim Blue">Denim Blue</label><br>
-                        <input type="radio" id="RUBY RED" name="Car_color" value="RUBY RED">
-                        <label for="RUBY RED">RUBY RED</label><br>
-        
+                        </div>
                       </div>
-                    </div>
-          
-                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                      <div class="icon-box icon-box-green">
-                        <div class="icon"><i class="bx bx-tachometer"></i></div>
-                        <h4 class="title"><a href="">PACKAGE</a></h4>
-                        <input type="radio" id="DRIVING ASSISTANCE PACKAGE" name="PACKAGE" value="DRIVING ASSITANCE PACKAGE">
-                        <label for="DRIVING ASSITANCE PACKAGE">DRIVING ASSITANCE PACKAGE</label><br>
-                        <input type="radio" id="SMARTPHONE INTEGRATION PACKAGE" name="PACKAGE" value="SMARTPHONE INTEGRATION PACKAGE">
-                        <label for="SMARTPHONE INTEGRATION PACKAGE">SMARTPHONE INTEGRATION PACKAGE</label><br>
-                      </div>
-                    </div>
-                <input type="submit" name="sub" value="SUBMIT">
+            
+                      <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-box icon-box-green">
+                          <div class="icon"><i class="bx bx-tachometer"></i></div>
+                          <h4 class="title"><a href="">PACKAGE</a></h4>
+                          <input type="radio" id="DRIVING ASSISTANCE PACKAGE" name="PACKAGE" value="DRIVING ASSITANCE PACKAGE">
+                          <label for="DRIVING ASSITANCE PACKAGE">DRIVING ASSITANCE PACKAGE</label><br>
+                          <input type="radio" id="SMARTPHONE INTEGRATION PACKAGE" name="PACKAGE" value="SMARTPHONE INTEGRATION PACKAGE">
+                          <label for="SMARTPHONE INTEGRATION PACKAGE">SMARTPHONE INTEGRATION PACKAGE</label><br>
+                          <input type="radio" id="LED INTELLIGENT LIGHT SYSTEM PACKAGE" name="PACKAGE" value="LED INTELLIGENT LIGHT SYSTEM PACKAGE">
+                          <label for="LED INTELLIGENT LIGHT SYSTEM PACKAGE">LED INTELLIGENT LIGHT SYSTEM PACKAGE</label><br>
+                          <input type="radio" id="INDIVISUAL ENTERTAINMENT SYSTEM PACKAGE" name="PACKAGE" value="INDIVISUAL ENTERTAINMENT SYSTEM PACKAGE">
+                          <label for="INDIVISUAL ENTERTAINMENT SYSTEM PACKAGE">INDIVISUAL ENTERTAINMENT SYSTEM PACKAGE</label><br>
+                        </div>
+                      </div> 
                 </form>
                 </div>
+                <input type="submit" name="sub" value="SUBMIT AND PURCHASE CAR">
                 </div>
                 </div>
       </section>
     </section>
-  
-    <!-- <section class="services">
-        <div class="container">
-  
-          <div class="row">
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
-              <div class="icon-box icon-box-pink">
-                <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                <h4 class="title"><a href="">Engine capacity</a></h4>
-                <input type="radio" id="5000rpm" name="engine_capacity" value="5000rpm">
-                <label for="5000rpm">5000rpm</label><br>
-                <input type="radio" id="6000rpm" name="engine_capacity" value="6000rpm">
-                <label for="6000rpm">6000rpm</label><br>
-              </div>
-            </div>
-  
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon-box icon-box-cyan">
-                <div class="icon"><i class="bx bx-file"></i></div>
-                <h4 class="title"><a href="">Car Color</a></h4>
-                <input type="radio" id="Mountain Grey" name="Car_color" value="Mountain Grey">
-                <label for="Mountain Grey">Mountain Grey</label><br>
-                <input type="radio" id="Denim Blue" name="Car_color" value="Denim Blue">
-                <label for="Denim Blue">Denim Blue</label><br>
-                <input type="radio" id="Ruby Black" name="Car_color" value="Ruby Black">
-                <label for="Ruby Black">Ruby Black</label><br>
-
-              </div>
-            </div>
-  
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon-box icon-box-green">
-                <div class="icon"><i class="bx bx-tachometer"></i></div>
-                <h4 class="title"><a href="">Wheel</a></h4>
-                <input type="radio" id="5-twin-spoke light-alloy wheels" name="car_wheel" value="5-twin-spoke light-alloy wheels">
-                <label for="5-twin-spoke light-alloy wheels">5-twin-spoke light-alloy wheels</label><br>
-                <input type="radio" id="AMG 5-spoke light-alloy wheels" name="car_wheel" value="AMG 5-spoke light-alloy wheels">
-                <label for="AMG 5-spoke light-alloy wheels">AMG 5-spoke light-alloy wheels</label><br>
-              </div>
-            </div>
-  
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon-box icon-box-blue">
-                <div class="icon"><i class="bx bx-world"></i></div>
-                <h4 class="title"><a href="">Seat Color</a></h4>
-                <input type="radio" id="saddle brown" name="Seat_color" value="saddle brown">
-                <label for="saddle brown">saddle brown</label><br>
-                <input type="radio" id=" silk beige " name="Seat_color" value=" silk beige ">
-                <label for=" silk beige "> silk beige </label><br>
-                <input type="radio" id="macchiato beige" name="Seat_color" value="macchiato beige">
-                <label for="macchiato beige">macchiato beige</label><br>
-              </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon-box icon-box-blue">
-                  <div class="icon"><i class="bx bx-world"></i></div>
-                  <h4 class="title"><a href="">Entertainment</a></h4>
-                  <input type="radio" id="2 Wireless Head Sets " name="entertainment" value="2 Wireless Head Sets ">
-                  <label for="2 Wireless Head Sets ">2 Wireless Head Sets </label><br>
-                  <input type="radio" id="Rear seat entertainment" name="entertainment" value="Rear seat entertainment">
-                  <label for="Rear seat entertainment">Rear seat entertainment</label><br>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon-box icon-box-blue">
-                  <div class="icon"><i class="bx bx-world"></i></div>
-                  <h4 class="title"><a href="">Sun Roof</a></h4>
-                  <input type="radio" id="Yes" name="sun roof" value="Yes">
-                  <label for="Yes">Yes</label><br>
-                  <input type="radio" id="No" name="sun roof" value="No">
-                  <label for="No">No</label><br>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon-box icon-box-blue">
-                  <div class="icon"><i class="bx bx-world"></i></div>
-                  <h4 class="title"><a href="">Driving Assistance</a></h4>
-                  <input type="radio" id="Yes" name="driving assitance" value="Yes">
-                  <label for="Yes">Yes</label><br>
-                  <input type="radio" id="No" name="driving assitance" value="No">
-                  <label for="No">No</label><br>
-                </div>
-              </div>
-            </div>
-        </div>
-        </section>
-      </div>End Services Section
-
-
-      <style> 
-        input[type=button]{
-          background-color: #0c0c0c;
-          border: none;
-          color: rgb(207, 26, 26);
-          padding: 16px 32px;
-          text-decoration: none;
-          margin: 4px 2px;
-          cursor: pointer;
-        }
-        </style>
-        <p>Confirm your Customization</p>
-        <input type="submit" value="Submit">
- -->
-        <!-- ======= About Section ======= -->
-    <section class="about" data-aos="fade-up">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6">
-              <img  src="{% static 'assets/img/custom/rubyblack.jpg' %}" class="img-fluid" alt="">
-          </div>
-  
-        </div>
-      </section><!-- End About Section -->
-    </main> -->
-
+    </main>
 
 <!-- ======= Footer ======= -->
   <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
