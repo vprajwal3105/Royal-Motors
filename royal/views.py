@@ -19,8 +19,7 @@ def about(request):
 
 def register(request):
     if request.method == 'POST':
-        first_name = request.POST['firstname']
-        last_name = request.POST['lastname']
+        name = request.POST['name']
         username = request.POST['username']
         password1 = request.POST['pass']
         password2 = request.POST['repass']
@@ -30,44 +29,40 @@ def register(request):
         cursor.execute('''select USERNAME from customer where USERNAME = %s''',[username])
         row = cursor.fetchall()
         if (len(row) > 0 and row[0] == username):
-                print("username already taken,please try with other username")
-                messages.info(request,'username already taken..please try with other username')
-                return redirect('register.html')
-        print(row)
+            messages.info(request,'username already taken..please try with other username')      
+            return redirect('/register') 
         if password1==password2:
             cursor = connection.cursor()
-            cursor.execute("insert into customer(USERNAME,PASSWORD,NAME,PHONE_NUMBER,EMAIL_ID) values(%s,%s,%s,%s,%s)", [username,password1,first_name,phone_no,email])
+            cursor.execute("insert into customer(USERNAME,PASSWORD,NAME,PHONE_NUMBER,EMAIL_ID) values(%s,%s,%s,%s,%s)", [username,password1,name,phone_no,email])
             return redirect('/login')
         else:
-             messages.info(request,'password not matching...')
-             return redirect('register.html')
-        return redirect("/")
+             messages.info(request,'Password not matching')
+        return redirect('/register')
     else:
         return render(request,'register.html')
 
-def loginFlow(request):
-     print("this is for login")
-     if request.method == 'POST':
-         username = request.POST['username']
-         password = request.POST['password']
-         cursor = connection.cursor()
-         cursor.execute('''select USERNAME from customer where USERNAME = %s''',[username])
-         userNameRow = cursor.fetchone()
-         cursor.execute('''select PASSWORD from customer where PASSWORD = %s''',[password])
-         passwordRow = cursor.fetchone()
-         #print("password is " + passwordRow[0])
-         if (userNameRow[0] == username ):
-             if (passwordRow[0] == password):
-                 print('Logged in successfully')
-                 messages.info(request,'Logged in successfully')
-                 response = HttpResponseRedirect("/")
-                 response.set_cookie("royalusername",username)
-                 return response
-                 request.COOKIES['username']
-         print("redirecting to home")        
-         return redirect("/")
-         print(row)
-     else:
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        cursor = connection.cursor()
+        cursor.execute('''select USERNAME from customer where USERNAME = %s''',[username])
+        userNameRow = cursor.fetchone()
+        cursor.execute('''select PASSWORD from customer where PASSWORD = %s''',[password])
+        passwordRow = cursor.fetchone()
+        if (userNameRow[0] == username ):
+            if (passwordRow[0] == password ):
+                response = HttpResponseRedirect("/")
+                response.set_cookie("royalusername",username)
+                return response
+                request.COOKIES['username']
+            else:
+                messages.info(request,'Password not matching')
+                return redirect('login.html')
+        else:
+            messages.info(request,'Username does not exist')
+            return redirect('login.html')
+    else:
          return render(request,'login.html')
         
 def carmodel(request):

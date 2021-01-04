@@ -47,7 +47,7 @@
           <li id= "carmodelhref"><a href="/carmodel">Car Model</a>
           </li>
           <li id = "testdrivehref"><a href="/testdrive">Test Drive</a></li>
-          <li id = "customizationhref" class="active"><a href="/customization">Customisation</a></li>
+          <li id = "customizationhref" class="active"><a href="/customization">Customisation and Purchase</a></li>
           <li id = "loginhref"><a  href="/login">Login</a></li>
           <li id = "registrationhref"><a href="/register">Registration</a></li>
           <li><a href="/contact">Contact us</a></li>
@@ -112,10 +112,10 @@
         <div class="container">
   
           <div class="d-flex justify-content-between align-items-center">
-            <h2>Customization</h2>
+            <h2>Customization and Purchase</h2>
             <ol>
               <li><a href="/">Home</a></li>
-              <li>customization</li>
+              <li>Customization and Purchase</li>
             </ol>
           </div>
   
@@ -128,7 +128,7 @@
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
             <div class="icon-box icon-box-pink">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h3 class="title">Please select the car model which you wish to Purchase</h3>
+              <h3 class="title">Please Select the Car Model which you wish to Purchase</h3>
               <script>
                 function check(browser) {
                   document.getElementById("answer").value=browser;
@@ -141,7 +141,7 @@
                 <input type="radio" id="p3" name="browser" onclick="check(this.value)" value="E CLASS">E CLASS<br>
                 <input type="radio" id="p4" name="browser" onclick="check(this.value)" value="S CLASS">S CLASS<br>
                 <input type="radio" id="p5" name="browser" onclick="check(this.value)" value="MAYBACH S CLASS">MAYBACH S CLASS<br>
-                <input type="radio" id="p6" name="browser" onclick="check(this.value)" value="C-CLASS CABRIOLET">C-CLASS CABRIOLET<br>
+                <input type="radio" id="p6" name="browser" onclick="check(this.value)" value="C CLASS CABRIOLET">C CLASS CABRIOLET<br>
                 <input type="radio" id="p7" name="browser" onclick="check(this.value)" value="GLA">GLA<br>
                 <input type="radio" id="p8" name="browser" onclick="check(this.value)" value="GLC">GLC<br>
                 <input type="radio" id="p9" name="browser" onclick="check(this.value)" value="GLE">GLE<br>
@@ -155,8 +155,13 @@
                 <input type="radio" id="p17" name="browser" onclick="check(this.value)" value="V CLASS">V CLASS<br>
                 <input type="radio" id="p18" name="browser" onclick="check(this.value)" value="E CLASS ALL TERRAIN">E CLASS ALL TERRAIN<br>
                 <br>
-                Selected Car Model: <input type="text" id="answer" size="150"><br><br><br>
-                <h3>If you wish you can customize your car</h3>
+                Selected Car Model: <input type="text" id="answer" size="150" required><br><br><br>
+                <h3>If you wish you can Customize your Car<br></h3>
+                <h5><p>
+                  Additional Cost:<br> 10000 for Car Colour<br>
+                                   15000 for Seat Colour<br>
+                                   20000 for Package<br>
+                </p></h5>
 
                 <section class="services">
                   <div class="container">
@@ -204,8 +209,8 @@
                       </div> 
                 </form>
                 </div>
-                Payment Mode:  <input type="text" id="payment_mode" name="payment_mode"><br>
-                Purchase Date : <input type="date" id="purchase_date" name="purchase_date"><br>
+                Payment Mode:  <input type="text" id="payment_mode" name="payment_mode" required><br>
+                Purchase Date : <input type="date" id="purchase_date" name="purchase_date" required><br>
                 <input type="submit" name="sub" value="SUBMIT AND PURCHASE CAR">
                 </div>
                 </div>

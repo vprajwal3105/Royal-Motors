@@ -78,16 +78,14 @@
         <form method='POST'>
         {%csrf_token%}
 
-            <label> Firstname </label>         
-            <input type="text" name="firstname" size="15" required/> <br> <br>  
-            <label> Lastname </label>     
-            <input type="text" name="lastname" size="15" required/> <br> <br>  
+            <label> Name </label>         
+            <input type="text" name="name" size="15" required/> <br> <br>    
             <label> Username </label>         
             <input type="text" name="username" size="15" required/> <br> <br>  
             <label> Email </label>  
             <input type="email" id="email" name="email" required/> <br>  
             <label> Phone Number </label>  
-            <input type="text" id="phone" name="phone" required/> <br>  
+            <input type="tel" id="phone" name="phone" placeholder="+91" pattern="[0-9]{10}" required> 
             <br>  
             Password:  
             <input type="Password" id="pass" name="pass" required> <br>   
@@ -125,16 +123,6 @@
   <div class="footer-top">
     <div class="container">
       <div class="row">
-
-        <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="/about">About us</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="/carmodel">Car Models</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="/testdrive">Test Drive</a></li>
-          </ul>
-        </div>
 
         <div class="col-lg-3 col-md-6 footer-contact">
           <h4>Contact Us</h4>
