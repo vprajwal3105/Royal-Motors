@@ -26,14 +26,14 @@ def register(request):
         email = request.POST['email']
         phone_no = request.POST['phone']
         cursor = connection.cursor()
-        cursor.execute('''select USERNAME from customer where USERNAME = %s''',[username])
-        row = cursor.fetchall()
-        if (len(row) > 0 and row[0] == username):
-            messages.info(request,'username already taken..please try with other username')      
+        row_count=cursor.execute('''select USERNAME from customer where USERNAME = %s''',[username])
+        row = cursor.fetchone()
+        if (row_count > 0 and row[0] == username):
+            messages.info(request,'Username already taken, Please try with an other Username')      
             return redirect('/register') 
         if password1==password2:
             cursor = connection.cursor()
-            cursor.execute("insert into customer(USERNAME,PASSWORD,NAME,PHONE_NUMBER,EMAIL_ID) values(%s,%s,%s,%s,%s)", [username,password1,name,phone_no,email])
+            cursor.execute("insert into customer(USERNAME,CUSTOMER_PASSWORD,CUSTOMER_NAME,PHONE_NUMBER,EMAIL_ID) values(%s,%s,%s,%s,%s)", [username,password1,name,phone_no,email])
             return redirect('/login')
         else:
              messages.info(request,'Password not matching')
@@ -46,22 +46,19 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
         cursor = connection.cursor()
-        cursor.execute('''select USERNAME from customer where USERNAME = %s''',[username])
+        row_count=cursor.execute('''select USERNAME,CUSTOMER_PASSWORD from customer where USERNAME = %s''',[username])
         userNameRow = cursor.fetchone()
-        cursor.execute('''select PASSWORD from customer where PASSWORD = %s''',[password])
-        passwordRow = cursor.fetchone()
-        if (userNameRow[0] == username ):
-            if (passwordRow[0] == password ):
-                response = HttpResponseRedirect("/")
-                response.set_cookie("royalusername",username)
-                return response
-                request.COOKIES['username']
-            else:
-                messages.info(request,'Password not matching')
-                return redirect('login.html')
+        if(row_count == 0):
+            messages.info(request,'Invalid Username or Password')
+            return redirect('/login')
+        if (userNameRow[0] == username and userNameRow[1]==password):
+            response = HttpResponseRedirect("/")
+            response.set_cookie("royalusername",username)
+            return response
+            request.COOKIES['username']
         else:
-            messages.info(request,'Username does not exist')
-            return redirect('login.html')
+            messages.info(request,'Password is not matching')
+            return redirect('/login')
     else:
          return render(request,'login.html')
         
@@ -76,8 +73,8 @@ def carmodel_details(request):
     cursor = connection.cursor()
     cursor.execute('''select * from car where MODEL_ID = %s''',[id[1]])
     row = cursor.fetchone()
-    print("############")
-    carDetails = {       
+    carDetails = {      
+        'MODEL_ID': row[0], 
         'CAR_TYPE': row[1], 
         'MODEL_NAME': row[2], 
         'PRICE': row[3], 
@@ -108,14 +105,13 @@ def testdrive(request):
 def testdrivesuccess(request):
     postData = request.POST.dict()
     MODEL_NAME = postData.get("browser")
-    TEST_DRIVE_ADDRESS = postData.get("testdriveaddress")
     TEST_DRIVE_DATE = postData.get("testdrivedate")
     print(MODEL_NAME)
     cursor = connection.cursor()
     cursor.execute('''select * from car where MODEL_NAME=%s''',[MODEL_NAME])
     row = cursor.fetchone()
     MODEL_ID = row[0]
-    cursor.execute('''insert into testdrive(MODEL_ID, TESTDRIVE_DATE,CUSTOMER_ADDRESS) values(%s,%s,%s)''', [ MODEL_ID, TEST_DRIVE_DATE,TEST_DRIVE_ADDRESS])
+    cursor.execute('''insert into testdrive(MODEL_ID, TESTDRIVE_DATE) values(%s,%s)''', [ MODEL_ID, TEST_DRIVE_DATE])
     return render(request, 'testdrivesuccess.html')
 
 def customization(request):
@@ -126,28 +122,34 @@ def purchase(request):
     USERNAME = request.COOKIES.get('royalusername')
     MODEL_NAME = pur.get("browser")
     CAR_COLOUR = pur.get("CAR COLOUR")
-    SEAT_COLOUR = pur.get("SEAT COLOUR")
+    SEAT_COLOUR = pur.get("SEAT_COLOUR")
     paymentMode =  pur.get("payment_mode")
     PACKAGE = pur.get("PACKAGE")
     PURCHASE_DATE =  pur.get("purchase_date")
     cursor = connection.cursor()
-    cursor.execute('''select price from car where MODEL_NAME = %s''', [MODEL_NAME])
+    cursor.execute('''select MODEL_ID from car where MODEL_NAME = %s''', [MODEL_NAME])
+    ID = cursor.fetchone()
+    MODEL_ID = ID[0]
+    cursor.execute('''select PRICE from car where MODEL_NAME = %s''', [MODEL_NAME])
     price = cursor.fetchone()
     totalPrice = price[0]
     if(CAR_COLOUR == "MOUNTAIN GREY" or CAR_COLOUR == "DENIM BLUE" or CAR_COLOUR == "EMERALD GREEN"):
         totalPrice = totalPrice + 10000
-    if(SEAT_COLOUR == "CARAMEL BROWN" or SEAT_COLOUR == "EXPRESSO BROWN" or SEAT_COLOUR == "RUBY RED"  ):
+    if(SEAT_COLOUR == "CARAMEL BROWN" or SEAT_COLOUR == "EXPRESSO BROWN" or SEAT_COLOUR == "RUBY RED"):
         totalPrice = totalPrice + 15000
     if(PACKAGE == "DRIVING ASSITANCE PACKAGE" or PACKAGE == "SMARTPHONE INTEGRATION PACKAGE" or PACKAGE == "DRIVING ASSITANCE PACKAGE" or PACKAGE == "LED INTELLIGENT LIGHT SYSTEM PACKAGE" or PACKAGE == "INDIVISUAL ENTERTAINMENT SYSTEM PACKAGE"  ):
         totalPrice = totalPrice + 20000
-    cursor.execute('''insert into purchase(USERNAME, MODEL_NAME, FINAL_PRICE, PAYMENT_MODE, PURCHASE_DATE) values(%s,%s,%s,%s,%s)''', [USERNAME, MODEL_NAME, totalPrice, paymentMode, PURCHASE_DATE])
+    cursor.execute('''select * from customer where USERNAME = %s''', [USERNAME])
+    CUS_ID=cursor.fetchone()
+    CUSTOMER_ID=CUS_ID[0]
+    cursor.execute('''insert into purchase(CUSTOMER_ID, MODEL_ID, FINAL_PRICE, PAYMENT_MODE, PURCHASE_DATE) values(%s,%s,%s,%s,%s)''', [CUSTOMER_ID, MODEL_ID, totalPrice, paymentMode, PURCHASE_DATE])
     cursor.execute('''SELECT LAST_INSERT_ID()''')
     lastInsertedId = cursor.fetchone()
     cursor.execute('''select * from purchase where PURCHASE_ID = %s''',[lastInsertedId[0]])
     row = cursor.fetchone()
     purchase_summary = {       
-        'USERNAME': row[1], 
-        'MODEL_NAME': row[2], 
+        'CUSTOMER_ID': row[1], 
+        'MODEL_ID': row[2], 
         'FINAL_PRICE': row[3], 
       }
     dataJson = dumps(purchase_summary)
