@@ -51,10 +51,10 @@
           <li id = "loginhref"><a  href="/login">Login</a></li>
           <li id = "registrationhref"><a href="/register">Registration</a></li>
           <li><a href="/contact">Contact us</a></li>
-          <li><input type="button" id= "logoutbutton" value="Logout" onclick= ' document.cookie = "royalusername=; expires=Fri, 20 Jun 2018 00:00:00 GMT";'/></li>
+          <li><input type="button" id= "logoutbutton" value="Logout" onclick= ' document.cookie = "royalusername=; expires=Fri, 20 Jun 2038 00:00:00 GMT";'/></li>
           <script type="text/javascript">
             document.getElementById("logoutbutton").onclick = function () {
-              document.cookie = "royalusername=; expires=Fri, 20 Jun 2018 00:00:00 GMT";
+              document.cookie = "royalusername=; expires=Fri, 20 Jun 2038 00:00:00 GMT";
               location.href = "/"
             };
             function LoginOnLoad() {
